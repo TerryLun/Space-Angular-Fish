@@ -118,4 +118,10 @@ public class GameController : MonoBehaviour
             GameOver();
         }
     }
+
+    // increment scores
+    public void IncreaseScore(int amount)
+    {
+        score += amount;
+    }
 }

@@ -48,13 +48,28 @@ public class DestroyByContact : MonoBehaviour
 
 		if (other.tag == "Player")
 		{
-			Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-            gameController.TakeDamage(spaceshipDamage);
-            // destroy the spaceship
-            Destroy(other.gameObject);
+			if (gameObject.tag == "Spaceship")
+            {
+                Instantiate(playerExplosion, transform.position, transform.rotation);
+                gameController.TakeDamage(spaceshipDamage);
+                // destroy the spaceship
+                Destroy(gameObject);
+            }
+            if (gameObject.tag == "Astronaut")
+            {
+                // increment energy and score
+                gameController.IncreaseScore(1);
+                gameController.TakeDamage(spaceshipDamage);
+                // destroy the astronaut
+                Destroy(gameObject);
+            }
 
             // this would destroy the player
             // Destroy(gameObject);
         }
+
+        // This line is not supposed to be executed; if it does, we'd like to know what triggered it
+        Debug.Log("DestroyByContact triggered by: ", gameObject.tag);
+        Destroy(gameObject);
 	}
 }
