@@ -1,20 +1,27 @@
 ﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] public float speed;
-    [SerializeField] public float digestTime = 2f;
-    [SerializeField] public int energyReduceByNonEdible = 20;
-    [SerializeField] public int energyIncreaseByOrganic = 10;
-
+    [Header("Set in Inspector")]
+    [Tooltip("This sets the speed of the player")]
+    public float speed;
+    [Tooltip("How long after eating a ship until the player can eat astronaughts again")]
+    public float digestTime = 2f;
+    [Tooltip("How much energy is lost hitting a planet")]
+    public int energyReduceByNonEdible = 20;
+    [Tooltip("How much energy is gained from eating an astronaut")]
+    public int energyIncreaseByOrganic = 10;
+    [Tooltip("At what rate is the player become hungry")]
+    public float energydrain;
+   
     private Rigidbody2D rb;
     private Vector2 moveAmount;
     private bool ableToEat = true;
-    private int energy = 100;
+    public float energy = 70;
 
     private void Start()
     {
@@ -23,14 +30,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (energy <= 0) {
-            GameOver();
-        }
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveAmount = moveInput.normalized * speed;
-    }
 
-   
+        if (moveInput.normalized != Vector2.zero)
+        {
+            transform.up = moveInput.normalized;
+        }
+        energy -= energydrain * Time.deltaTime;
+
+    }
 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + moveAmount * Time.fixedDeltaTime);
@@ -45,12 +54,13 @@ public class Player : MonoBehaviour
             Debug.Log("cannot eat");
             StartCoroutine(Digest());
         }
+
         if ((other.gameObject.CompareTag("NonEdible")) && (ableToEat == true))
         {
             energy-= energyReduceByNonEdible;
             Debug.Log(energy);
-            Destroy(other.gameObject);
         }
+
         if ((other.gameObject.CompareTag("Organic")) && (ableToEat == true))
         {
             energy+= energyIncreaseByOrganic;
@@ -63,10 +73,5 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(digestTime);
         ableToEat = true;
         Debug.Log("can eat");
-    }
-
-    private void GameOver()
-    {
-        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings-1);
     }
 }
