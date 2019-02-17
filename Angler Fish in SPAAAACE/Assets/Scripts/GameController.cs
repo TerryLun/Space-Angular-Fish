@@ -5,16 +5,13 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject[] hazards;
-    public Vector3 spawnValues;
-    public int hazardCount;
+    public GameObject player;
+    public GameObject[] spaceship_hazards;
+    public Vector2 spawnOffsets;
+    private int hazardCount;
     public float spawnWait;
     public float startWait;
     public float waveWait;
-
-    public Text scoreText;
-    public Text restartText;
-    public Text gameOverText;
 
     private bool gameOver;
     private bool restart;
@@ -31,10 +28,9 @@ public class GameController : MonoBehaviour
     {
         gameOver = false;
         restart = false;
-        restartText.text = "";
-        gameOverText.text = "";
         score = 0;
         StartCoroutine(SpawnWaves());
+        hazardCount = 0;
     }
 
     void Update()
@@ -48,7 +44,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    /// <summary>
+    //// <summary>
     /// TODO: spawn spaceships
     /// 
     /// A coroutine is like a function that has the ability to pause execution and return control to Unity 
@@ -72,25 +68,81 @@ public class GameController : MonoBehaviour
 
         // Ensure there 0-3 ship hazards at any time
         // Everytime the coroutine wakes up, if num_hazards are within bounds, flip a coin to see if we spawn a ship
-
-
-        // BELOW is the logic from the tutorial project, remove later
         yield return new WaitForSeconds(startWait);
         while (true)
         {
-            for (int i = 0; i < hazardCount; i++)
+            if (hazardCount < 3 && Random.value >= 0.5)
             {
-                GameObject hazard = hazards[Random.Range(0, hazards.Length)];
-                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                GameObject hazard = spaceship_hazards[Random.Range(0, spaceship_hazards.Length)];
+
+                /* Old Code
+                //-----------------------------------------------
+                float x = Random.Range(-0.1f, 0.1f);
+                if (x > 0)
+                {
+                    x++;
+                }
+
+                float y = Random.Range(-0.1f, 0.1f);
+                if (y > 0)
+                {
+                    y++;
+                }
+                //-----------------------------------------------
+                */
+
+                // New Code
+                //-----------------------------------------------
+                float x, y;
+                if (Random.Range(1.0f,-1.0f) > 0)
+                {
+                    // 50% chance we start with x randomly assigned first
+                    x = Random.Range(-0.1f, 1.1f);
+                    if (x > 0.0f && x < 1.0f)
+                    {
+                        // within screen bounds, must make sure the other side is outside screen
+                        float y = Random.Range(-0.1f, 0.1f);
+                        if (y > 0)
+                        {
+                            y++;
+                        }
+                    }
+                }
+
+                else
+                {
+                    // the other 50% means we start with y randomly assigned first
+                    y = Random.Range(-0.1f, 1.1f);
+                    if (y > 0.0f && y < 1.0f)
+                    {
+                        float x = Random.Range(-0.1f, 0.1f);
+                        if (x > 0)
+                        {
+                            x++;
+                        }
+                    }
+                }
+
+                float y = Random.Range(-0.1f, 1.1f);
+                // should spawn somewhere other than the 4 corners now, hopefully
+                // previous error might've been in skipping over the entier "side"
+
+                // -0.1 to 0.1 + 1
+                Vector2 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector2(x, y));
+                //-----------------------------------------------
+
+                //float x = player.transform.position.x + Screen.width; 
+                // float y = player.transform.position.y + Screen.height;
+                // Vector2 spawnPosition = new Vector2(x, y);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
+                hazardCount++;
                 yield return new WaitForSeconds(spawnWait);
             }
             yield return new WaitForSeconds(waveWait);
 
             if (gameOver)
             {
-                restartText.text = "Press 'R' for Restart";
                 restart = true;
                 break;
             }
@@ -102,7 +154,6 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        gameOverText.text = "Game Over!";
         gameOver = true;
     }
 

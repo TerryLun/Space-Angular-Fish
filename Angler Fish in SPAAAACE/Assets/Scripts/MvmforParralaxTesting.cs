@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MvmforParralaxTesting : MonoBehaviour
 {
+
     public float playerspeed;
     Rigidbody rigid;
 
