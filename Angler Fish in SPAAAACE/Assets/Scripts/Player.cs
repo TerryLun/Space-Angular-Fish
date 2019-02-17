@@ -45,6 +45,11 @@ public class Player : MonoBehaviour
     private Boolean boostReady;
     private Boolean recharged;
 
+    //Animation
+    public Animator animator;
+    private float chompTime;
+    private float boostTime;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,6 +75,7 @@ public class Player : MonoBehaviour
             startBoost();
             boostReady = false;
         }
+       
 
         attractive = false;
         
@@ -110,7 +116,7 @@ public class Player : MonoBehaviour
                 forwardVelocityX += accelRatePerSec * Time.fixedDeltaTime;
                 forwardVelocityX = Mathf.Min(forwardVelocityX, maxSpeed);
             }
-
+            animator.SetBool("isSwimming", true);
         }
         else if (accelDirectionX < 0)
         {
@@ -124,6 +130,7 @@ public class Player : MonoBehaviour
                 forwardVelocityX -= accelRatePerSec * Time.fixedDeltaTime;
                 forwardVelocityX = Mathf.Max(forwardVelocityX, maxNegSpeed);
             }
+            animator.SetBool("isSwimming", true);
         }
         moveVelocity.x = horizontalInput.x * forwardVelocityX;
 
@@ -141,6 +148,7 @@ public class Player : MonoBehaviour
                 forwardVelocityY += accelRatePerSec * Time.fixedDeltaTime;
                 forwardVelocityY = Mathf.Min(forwardVelocityY, maxSpeed);
             }
+            animator.SetBool("isSwimming", true);
         }
         else if (accelDirectionY < 0)
         {
@@ -154,10 +162,23 @@ public class Player : MonoBehaviour
                 forwardVelocityY -= accelRatePerSec * Time.fixedDeltaTime;
                 forwardVelocityY = Mathf.Max(forwardVelocityY, maxNegSpeed);
             }
+            animator.SetBool("isSwimming", true);
+        }
+
+        if(Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            animator.SetBool("isSwimming", false);
         }
 
         moveVelocity.y = verticalInput.y * forwardVelocityY;
         energy -= energydrain * Time.deltaTime;
+
+        stopEat();
+
+        if(Time.time - boostTime >= 1 && animator.GetBool("isBoosting"))
+        {
+            endBoost();
+        }
 
     }
 
@@ -168,7 +189,9 @@ public class Player : MonoBehaviour
 
         if (moveInput.normalized != Vector2.zero)
         {
-            transform.up = moveInput.normalized;
+            //Vector2 vecSubtract = Vector2.Set(0.0f,0.0f);
+            transform.right = -moveInput.normalized ;
+            Debug.Log("face direction"+moveInput.normalized);
         }
         
     }
@@ -182,6 +205,8 @@ public class Player : MonoBehaviour
         maxSpeed = maxSpeed * 3;
         maxNegSpeed = maxSpeed * -1;
         StartCoroutine(boostTimer());
+        animator.SetBool("isBoosting", true);
+        boostTime = Time.time;
     }
 
     void endBoost()
@@ -192,6 +217,7 @@ public class Player : MonoBehaviour
         maxSpeed = maxSpeed / 3;
         maxNegSpeed = maxSpeed * -1;
         boostReady = true;
+        animator.SetBool("isBoosting", false);
     }
 
     public IEnumerator boostTimer()
@@ -221,6 +247,21 @@ public class Player : MonoBehaviour
             energy+= energyIncreaseByOrganic;
             Debug.Log(energy);
             Destroy(other.gameObject);
+            eatAnim();
+        }
+    }
+
+    void eatAnim()
+    {
+        animator.SetBool("isEating", true);
+        chompTime = Time.time;
+    }
+
+    void stopEat()
+    {
+        if(Time.time - chompTime >= 1 && animator.GetBool("isEating"))
+        {
+            animator.SetBool("isEating", false);
         }
     }
 

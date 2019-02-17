@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
 
-
+        return;
         if (rb.velocity.x < 0 && facingRight)
         {
             flip();
