@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: e5bae499110e51848b7e6e13b7454439, type: 3}
-  fleeSpeed: 5
+  fleeSpeed: 1
   player: {fileID: 0}
   Father: {fileID: 0}
 --- !u!114 &2390465555172731540

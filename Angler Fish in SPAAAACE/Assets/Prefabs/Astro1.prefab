@@ -133,11 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7de0ef0bf3b68b4baec2d6adb61e62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AstroSounds:
-  - {fileID: 8300000, guid: e5bae499110e51848b7e6e13b7454439, type: 3}
-  - {fileID: 8300000, guid: a9d4f11fa9ae3a542aef247027b2e4ad, type: 3}
   soundToPlay: {fileID: 8300000, guid: e5bae499110e51848b7e6e13b7454439, type: 3}
-  fleeSpeed: 5
+  fleeSpeed: 1
   player: {fileID: 0}
   Father: {fileID: 0}
 --- !u!114 &751995849251590023
