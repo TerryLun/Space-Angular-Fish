@@ -74,6 +74,9 @@ public class GameController : MonoBehaviour
             if (hazardCount < 3 && Random.value >= 0.5)
             {
                 GameObject hazard = spaceship_hazards[Random.Range(0, spaceship_hazards.Length)];
+
+                /* Old Code
+                //-----------------------------------------------
                 float x = Random.Range(-0.1f, 0.1f);
                 if (x > 0)
                 {
@@ -85,13 +88,52 @@ public class GameController : MonoBehaviour
                 {
                     y++;
                 }
+                //-----------------------------------------------
+                */
+
+                // New Code
+                //-----------------------------------------------
+                float x, y;
+                if (Random.Range(1.0f,-1.0f) > 0)
+                {
+                    // 50% chance we start with x randomly assigned first
+                    x = Random.Range(-0.1f, 1.1f);
+                    if (x > 0.0f && x < 1.0f)
+                    {
+                        // within screen bounds, must make sure the other side is outside screen
+                        float y = Random.Range(-0.1f, 0.1f);
+                        if (y > 0)
+                        {
+                            y++;
+                        }
+                    }
+                }
+
+                else
+                {
+                    // the other 50% means we start with y randomly assigned first
+                    y = Random.Range(-0.1f, 1.1f);
+                    if (y > 0.0f && y < 1.0f)
+                    {
+                        float x = Random.Range(-0.1f, 0.1f);
+                        if (x > 0)
+                        {
+                            x++;
+                        }
+                    }
+                }
+
+                float y = Random.Range(-0.1f, 1.1f);
+                // should spawn somewhere other than the 4 corners now, hopefully
+                // previous error might've been in skipping over the entier "side"
 
                 // -0.1 to 0.1 + 1
                 Vector2 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector2(x, y));
+                //-----------------------------------------------
 
-               //float x = player.transform.position.x + Screen.width; 
-               // float y = player.transform.position.y + Screen.height;
-               // Vector2 spawnPosition = new Vector2(x, y);
+                //float x = player.transform.position.x + Screen.width; 
+                // float y = player.transform.position.y + Screen.height;
+                // Vector2 spawnPosition = new Vector2(x, y);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 hazardCount++;
