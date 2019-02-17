@@ -2535,6 +2535,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1976314131
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976314125}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e3d36baccad4ce408f2e6c2516c51fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2043536631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,6 +2952,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1976314131}
     - target: {fileID: 1265187242063162495, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
       propertyPath: m_BodyType
