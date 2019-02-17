@@ -255,6 +255,7 @@ public class Player : MonoBehaviour
             ableToEat = false;
             Debug.Log("cannot eat");
             StartCoroutine(Digest());
+            eatAnim();
         }
 
         if ((other.gameObject.CompareTag("NonEdible")))
@@ -283,7 +284,7 @@ public class Player : MonoBehaviour
 
     void stopEat()
     {
-        if(Time.time - chompTime >= 1 && animator.GetBool("isEating"))
+        if(Time.time - chompTime >= .5 && animator.GetBool("isEating"))
         {
             animator.SetBool("isEating", false);
         }
