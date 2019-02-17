@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
    
     private Rigidbody2D rb;
     private Vector2 moveAmount;
-    private bool ableToEat = true;
+    public bool ableToEat = true;
     public float energy = 70;
     public PlayThatFunkyMusic whiteboy;
     public float intensityToggle;
@@ -43,12 +43,12 @@ public class Player : MonoBehaviour
     private Vector2 moveVelocity;
 
     //boost
-    private Boolean boostReady;
+    public  Boolean boostReady;
     private Boolean recharged;
 
     private void Start()
     {
-        whiteboy = GameObject.FindGameObjectWithTag("Musician");
+        whiteboy = GameObject.FindGameObjectWithTag("Musician").GetComponent<PlayThatFunkyMusic>();
         rb = GetComponent<Rigidbody2D>();
         accelRatePerSec = maxSpeed / timeZeroToMax;
         forwardVelocityX = 0f;
@@ -61,11 +61,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(energy < 0)
+        {
+        }
         if (energy < intensityToggle)
         {
             whiteboy.highIntensity = true;
         }
-        else
+        else 
         {
             whiteboy.highIntensity = false;
         }
