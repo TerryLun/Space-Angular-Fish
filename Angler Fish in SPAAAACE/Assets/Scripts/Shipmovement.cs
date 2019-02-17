@@ -7,20 +7,19 @@ public class Shipmovement : MonoBehaviour
     public float maxSpeed;
     public float closeEnough;
     public GameObject[] AstroPrefabs;
-    public GameObject[] Planets;
     public Player player;
     public Vector3[] offsets;
 
     private bool empty = false;
     private bool scared = false;
-    private GameObject home;
+    public Transform home;
     private int morality = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        home = Planets[Random.Range(0, Planets.Length)];
+        
         StartCoroutine(Dangers());
     }
 
@@ -28,7 +27,7 @@ public class Shipmovement : MonoBehaviour
     void Update()
     {
 
-        if (!scared)
+        if (!scared && !empty)
         {
             if (Mathf.Abs(Vector2.Distance(player.transform.position, transform.position)) < closeEnough)
             {
