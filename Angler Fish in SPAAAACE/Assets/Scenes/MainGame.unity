@@ -1322,8 +1322,8 @@ MonoBehaviour:
   gameController: {fileID: 1461321715}
   debris_hazards:
   - {fileID: 9130595886147272911, guid: 88d476eca7835ed489d61b239daff8c0, type: 3}
-  maxAsteroids: 8
-  spawnRadius: 20
+  maxAsteroids: 20
+  spawnRadius: 25
   spawnWait: 0
 --- !u!4 &999161291
 Transform:
