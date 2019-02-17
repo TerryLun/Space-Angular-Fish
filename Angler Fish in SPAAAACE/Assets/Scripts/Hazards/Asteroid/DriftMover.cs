@@ -8,11 +8,12 @@ using UnityEngine;
 public class DriftMover : MonoBehaviour
 {
     private Vector3 randomVector;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        randomVector = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
+        randomVector = new Vector3(Random.Range(-1.0f * speed, speed), Random.Range(-1.0f * speed, speed), 0);
     }
 
     // Update is called once per frame
