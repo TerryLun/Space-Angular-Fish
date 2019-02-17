@@ -2,6 +2,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
     {
         if(energy < 0)
         {
+            SceneManager.LoadScene("Game Over");
         }
         if (energy < intensityToggle)
         {
