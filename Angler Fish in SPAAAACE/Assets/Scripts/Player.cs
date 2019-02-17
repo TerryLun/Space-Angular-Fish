@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -21,9 +23,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (energy <= 0) {
+            GameOver();
+        }
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         moveAmount = moveInput.normalized * speed;
     }
+
+   
 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + moveAmount * Time.fixedDeltaTime);
@@ -56,5 +63,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(digestTime);
         ableToEat = true;
         Debug.Log("can eat");
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings-1);
     }
 }
