@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class AstroMovement : MonoBehaviour
 {
+    private AudioSource TheSourceByCircuitCity;
+    public AudioClip soundToPlay;
     public float fleeSpeed;
     private Vector2 target;
     private Vector2 position;
@@ -20,6 +23,8 @@ public class AstroMovement : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        TheSourceByCircuitCity = GetComponent<AudioSource>();
+        TheSourceByCircuitCity.clip = soundToPlay;
         Father = transform.parent;
         rb = GetComponent<Rigidbody2D>();
         randomVector = new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), 0);
@@ -38,8 +43,6 @@ public class AstroMovement : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, Father.position, Time.deltaTime * fleeSpeed);
         }
-        
-
     }
 }
 
