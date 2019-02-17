@@ -1,10 +1,10 @@
 ﻿using System;
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour
+public class PlayerTest : MonoBehaviour
 {
     [Header("Set in Inspector")]
     [Tooltip("This sets the speed of the player")]
@@ -17,13 +17,13 @@ public class Player : MonoBehaviour
     public int energyIncreaseByOrganic = 10;
     [Tooltip("At what rate is the player become hungry")]
     public float energydrain;
-   
+
     private Rigidbody2D rb;
     private Vector2 moveAmount;
     private bool ableToEat = true;
     public float energy = 70;
 
-    public bool attractive = false;
+
 
     // Movement stuff with acceleration
     public bool facingRight = true;
@@ -41,9 +41,8 @@ public class Player : MonoBehaviour
     private float forwardVelocityY;
     private Vector2 moveVelocity;
 
-    //boost
-    private Boolean boostReady;
-    private Boolean recharged;
+
+
 
     private void Start()
     {
@@ -53,37 +52,23 @@ public class Player : MonoBehaviour
         forwardVelocityY = 0f;
         maxNegSpeed = maxSpeed * -1;
         deccelerateBuff *= accelRatePerSec;
-        boostReady = false;
-        recharged = true;
-}
+    }
 
     private void Update()
     {
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //moveAmount = moveInput.normalized * speed;
 
-        if (recharged)
+        if (moveInput.normalized != Vector2.zero)
         {
-            endBoost();
-            recharged = false;
+            transform.up = moveInput.normalized;
         }
-        if (Input.GetKeyDown("space") && boostReady)
-        {
-            startBoost();
-            boostReady = false;
-        }
+        energy -= energydrain * Time.deltaTime;
 
-        attractive = false;
-        
-        if (moveAmount == Vector2.zero)
-        {
-            if (Input.GetButton("Attract"))
-            {
-                attractive = true;
-                Debug.Log("Attractive: " + attractive);
-            }
-        }
+
 
         Vector2 moveInput2 = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveInput2 = moveInput2.normalized;
+        moveInput2 = moveInput.normalized;
 
         inputx = Mathf.Abs(moveInput2.x);
         if (inputx < 0.000001 && inputx > -0.000001)
@@ -157,51 +142,18 @@ public class Player : MonoBehaviour
         }
 
         moveVelocity.y = verticalInput.y * forwardVelocityY;
-        energy -= energydrain * Time.deltaTime;
 
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //moveAmount = moveInput.normalized * speed;
-
-        if (moveInput.normalized != Vector2.zero)
-        {
-            transform.up = moveInput.normalized;
-        }
-        
+        //rb.MovePosition(rb.position + moveAmount * Time.fixedDeltaTime);
     }
 
-    void startBoost()
+    void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Boosting");
-        energy -= energydrain;
-        accelRatePerSec = accelRatePerSec * 10;
-        deccelerateBuff = deccelerateBuff * 10;
-        maxSpeed = maxSpeed * 3;
-        maxNegSpeed = maxSpeed * -1;
-        StartCoroutine(boostTimer());
-    }
 
-    void endBoost()
-    {
-        Debug.Log("Boost Ended");
-        accelRatePerSec = accelRatePerSec / 10;
-        deccelerateBuff = deccelerateBuff / 10;
-        maxSpeed = maxSpeed / 3;
-        maxNegSpeed = maxSpeed * -1;
-        boostReady = true;
-    }
-
-    public IEnumerator boostTimer()
-    {
-        yield return new WaitForSeconds(4f); // waits 3 seconds
-        recharged = true; // will make the update method pick up 
-    }
-
-    void OnCollisionEnter2D(Collision2D other) {
-        
         if (other.gameObject.CompareTag("Metal"))
         {
             Destroy(other.gameObject);
@@ -212,19 +164,20 @@ public class Player : MonoBehaviour
 
         if ((other.gameObject.CompareTag("NonEdible")) && (ableToEat == true))
         {
-            energy-= energyReduceByNonEdible;
+            energy -= energyReduceByNonEdible;
             Debug.Log(energy);
         }
 
         if ((other.gameObject.CompareTag("Organic")) && (ableToEat == true))
         {
-            energy+= energyIncreaseByOrganic;
+            energy += energyIncreaseByOrganic;
             Debug.Log(energy);
             Destroy(other.gameObject);
         }
     }
 
-    IEnumerator Digest() {
+    IEnumerator Digest()
+    {
         yield return new WaitForSeconds(digestTime);
         ableToEat = true;
         Debug.Log("can eat");
