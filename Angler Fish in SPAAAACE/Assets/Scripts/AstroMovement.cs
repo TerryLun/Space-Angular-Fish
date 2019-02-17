@@ -23,8 +23,8 @@ public class AstroMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.MovePosition(rb.position + moveAmount * Time.DeltaTime);
-        transform.position = Time.deltaTime * 
+        //rb.MovePosition(rb.position + moveAmount * Time.DeltaTime);
+        //transform.position = Time.deltaTime * 
         
 
     }
