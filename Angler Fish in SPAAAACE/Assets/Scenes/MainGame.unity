@@ -2656,6 +2656,11 @@ PrefabInstance:
       propertyPath: deccelerateBuff
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
+        type: 3}
+      propertyPath: intensityToggle
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1265187242063162465, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
       propertyPath: m_LocalPosition.x

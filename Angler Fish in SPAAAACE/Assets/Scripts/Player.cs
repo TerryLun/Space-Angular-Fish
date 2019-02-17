@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        whiteboy = GameObject.FindGameObjectWithTag("Musician");
+        whiteboy = GameObject.FindGameObjectWithTag("Musician").GetComponent<PlayThatFunkyMusic>();
         rb = GetComponent<Rigidbody2D>();
         accelRatePerSec = maxSpeed / timeZeroToMax;
         forwardVelocityX = 0f;
