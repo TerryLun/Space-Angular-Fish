@@ -72,48 +72,10 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(startWait);
         while (true)
         {
-            Debug.Log("Here");
             if (hazardCount < 3 && Random.value >= 0.5 && !disableSpawning)
             {
                 GameObject hazard = spaceship_hazards[Random.Range(0, spaceship_hazards.Length)];
-
-                // New Code
-                //-----------------------------------------------
-                float x = 0, y = 0;
-                if (Random.Range(1.0f,-1.0f) > 0)
-                {
-                    // 50% chance we start with x randomly assigned first
-                    x = Random.Range(-0.1f, 1.1f);
-                    if (x > 0.0f && x < 1.0f)
-                    {
-                        // within screen bounds, must make sure the other side is outside screen
-                        y = Random.Range(-0.1f, 0.1f);
-                        if (y > 0)
-                        {
-                            y++;
-                        }
-                    }
-                }
-
-                else
-                {
-                    // the other 50% means we start with y randomly assigned first
-                    y = Random.Range(-0.1f, 1.1f);
-                    if (y > 0.0f && y < 1.0f)
-                    {
-                        x = Random.Range(-0.1f, 0.1f);
-                        if (x > 0)
-                        {
-                            x++;
-                        }
-                    }
-                }
-
-                // should spawn somewhere other than the 4 corners now, hopefully
-                // previous error might've been in skipping over the entier "side"
-
-                // -0.1 to 0.1 + 1
-                Vector2 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector2(x, y));
+                Vector2 spawnPosition = getRandomSpawnPoint();
                 //-----------------------------------------------
 
                 //float x = player.transform.position.x + Screen.width; 
@@ -158,5 +120,41 @@ public class GameController : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    public Vector2 getRandomSpawnPoint()
+    {
+        float x = 0, y = 0;
+        if (Random.Range(1.0f, -1.0f) > 0)
+        {
+            // 50% chance we start with x randomly assigned first
+            x = Random.Range(-0.1f, 1.1f);
+            if (x > 0.0f && x < 1.0f)
+            {
+                // within screen bounds, must make sure the other side is outside screen
+                y = Random.Range(-0.1f, 0.1f);
+                if (y > 0)
+                {
+                    y++;
+                }
+            }
+        }
+
+        else
+        {
+            // the other 50% means we start with y randomly assigned first
+            y = Random.Range(-0.1f, 1.1f);
+            if (y > 0.0f && y < 1.0f)
+            {
+                x = Random.Range(-0.1f, 0.1f);
+                if (x > 0)
+                {
+                    x++;
+                }
+            }
+        }
+
+        Vector2 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector2(x, y));
+        return spawnPosition;
     }
 }
