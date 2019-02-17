@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
             endBoost();
             recharged = false;
         }
-        if (Input.GetKeyDown("space") && boostReady)
+        if (Input.GetKeyDown("left shift") && boostReady)
         {
             startBoost();
             boostReady = false;
@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Digest());
         }
 
-        if ((other.gameObject.CompareTag("NonEdible")) && (ableToEat == true))
+        if ((other.gameObject.CompareTag("NonEdible")))
         {
             energy-= energyReduceByNonEdible;
             Debug.Log(energy);

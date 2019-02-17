@@ -17,6 +17,15 @@ public class DestroyByRange : MonoBehaviour
         debrisController = GameObject.FindGameObjectWithTag("DebrisController").GetComponent<DebrisController>();
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if ((other.gameObject.CompareTag("Player")))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

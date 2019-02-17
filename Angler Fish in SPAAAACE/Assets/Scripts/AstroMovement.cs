@@ -12,7 +12,6 @@ public class AstroMovement : MonoBehaviour
     private Vector2 position;
     private Camera cam;
     Rigidbody2D rb;
-    public float searchDistance;
 
     public Player player;
     public Transform Father;
