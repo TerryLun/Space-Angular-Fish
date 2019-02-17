@@ -26,8 +26,14 @@ public class MvmforParralaxTesting : MonoBehaviour
             vel.Normalize();
         }
 
+        if (vel != Vector3.zero)
+        {
+            transform.up = vel;
+        }
         rigid.velocity = vel * playerspeed;
-        transform.up = vel;
+
  
     }
+
+
 }
