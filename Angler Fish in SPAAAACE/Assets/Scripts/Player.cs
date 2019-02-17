@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public float timeZeroToMax;
     public float deccelerateBuff;
     public float waterResisance;
+    public float time;
+    public static int score;
 
     [Header("Energy/Boost")]
     public float digestTime = 2f;
@@ -74,6 +76,7 @@ public class Player : MonoBehaviour
     {
         if(energy < 0)
         {
+            score = (int)(time * time /4);
             SceneManager.LoadScene("Game Over");
         }
         if (energy < intensityToggle)
@@ -95,7 +98,8 @@ public class Player : MonoBehaviour
             startBoost();
             boostReady = false;
         }
-       
+
+        time += Time.deltaTime;
 
         attractive = false;
         

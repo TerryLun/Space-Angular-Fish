@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     private bool gameOver;
     private bool restart;
     private int score;
+    private float time;
 
     /// <summary>
     /// energy level 0-100
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
         score = 0;
         //StartCoroutine(SpawnWaves());
         hazardCount = 0;
+        time = 0f;
     }
 
     void Update()
@@ -44,6 +46,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
 
     //// <summary>
     /// TODO: spawn spaceships
@@ -107,6 +110,10 @@ public class GameController : MonoBehaviour
     public bool IsGameOver()
     {
         return gameOver;
+    }
+
+    public float getTime() {
+        return time;
     }
 
     /// <summary>
