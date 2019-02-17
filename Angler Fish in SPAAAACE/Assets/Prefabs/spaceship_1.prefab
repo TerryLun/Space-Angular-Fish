@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 493184}
   - component: {fileID: 21257194}
-  - component: {fileID: 4360133106361272920}
-  - component: {fileID: 2985474099911447410}
-  - component: {fileID: 7815558843843464149}
   - component: {fileID: 8571812061913312469}
   m_Layer: 0
   m_Name: spaceship_1
@@ -83,50 +80,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4360133106361272920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feae9db4273d62c41a367d93fdfb6dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 15
-  player: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a, type: 3}
-  startWait: 0
---- !u!114 &2985474099911447410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124534}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ec8b349f6a38845857bfb45c1dd97d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosion: {fileID: 100004, guid: a6d58f54ce5934781962a4f887e834f3, type: 3}
-  playerExplosion: {fileID: 100008, guid: 3455fe69f7ddc4604b95bf9b0a1e88d7, type: 3}
-  scoreValue: 0
-  spaceshipDamage: 10
---- !u!114 &7815558843843464149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124534}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949dcec6a9386f34cb4ba9ac604cb43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 30
 --- !u!60 &8571812061913312469
 PolygonCollider2D:
   m_ObjectHideFlags: 0

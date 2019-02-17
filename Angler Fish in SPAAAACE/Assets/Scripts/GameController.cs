@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         gameOver = false;
         restart = false;
         score = 0;
-        StartCoroutine(SpawnWaves());
+        //StartCoroutine(SpawnWaves());
         hazardCount = 0;
     }
 
