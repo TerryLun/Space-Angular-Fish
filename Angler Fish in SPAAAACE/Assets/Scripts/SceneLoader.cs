@@ -29,4 +29,9 @@ public class SceneLoader : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
