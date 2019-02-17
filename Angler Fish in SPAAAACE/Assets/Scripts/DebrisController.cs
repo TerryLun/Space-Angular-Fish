@@ -43,7 +43,7 @@ public class DebrisController : MonoBehaviour
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 hazardCount++;
-                Debug.Log("Spawned debris");
+                //Debug.Log("Spawned debris");
             }
             yield return new WaitForSeconds(spawnWait);
 
