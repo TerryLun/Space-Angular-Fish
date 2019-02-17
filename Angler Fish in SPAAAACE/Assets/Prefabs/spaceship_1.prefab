@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 493184}
   - component: {fileID: 21257194}
   - component: {fileID: 8571812061913312469}
+  - component: {fileID: 2121923997274724287}
   m_Layer: 0
   m_Name: spaceship_1
   m_TagString: Metal
@@ -125,3 +126,28 @@ PolygonCollider2D:
       - {x: 0.105, y: -1.025}
       - {x: 0.145, y: -0.98499995}
       - {x: 0.16499999, y: -0.85499996}
+--- !u!114 &2121923997274724287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1adc3b007529140a6874db982c7cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 15
+  closeEnough: 5
+  AstroPrefabs:
+  - {fileID: 7605441490403100832, guid: 267a20f3ae5f30e4296ae9b1dc7de1ea, type: 3}
+  - {fileID: 2306497840158913007, guid: 8abdb05b4ca13474fbd9d6ea9c6a85fc, type: 3}
+  - {fileID: 4985622195763991009, guid: d6d1e8c1087cd13499f3b554dd21881f, type: 3}
+  Planets:
+  - {fileID: 0}
+  player: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a, type: 3}
+  offsets:
+  - {x: 3, y: 3, z: 0}
+  - {x: -3, y: 3, z: 0}
+  - {x: 0, y: -4, z: 0}
