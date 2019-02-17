@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1265187242063162464}
   - component: {fileID: 1265187242063162494}
   - component: {fileID: 1265187242063162495}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,9 @@ MonoBehaviour:
   digestTime: 2
   energyReduceByNonEdible: 20
   energyIncreaseByOrganic: 10
+  energydrain: 0
+  energy: 70
+  attractive: 0
 --- !u!50 &1265187242063162495
 Rigidbody2D:
   serializedVersion: 4

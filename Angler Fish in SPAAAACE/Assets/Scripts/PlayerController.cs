@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-<<<<<<< HEAD
+
     public bool facingRight = true;
     public float maxSpeed;
     public float timeZeroToMax;
@@ -20,31 +20,26 @@ public class PlayerController : MonoBehaviour
     private float forwardVelocityX;
     private float forwardVelocityY;
     private Vector2 moveVelocity;
-=======
-    private Rigidbody2D rb;
-    private Vector2 moveAmount;
-    public float speed;
->>>>>>> tmp
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
+
         accelRatePerSec = maxSpeed / timeZeroToMax;
         forwardVelocityX = 0f;
         forwardVelocityY = 0f;
         maxNegSpeed = maxSpeed * -1;
         deccelerateBuff *= accelRatePerSec;
-=======
->>>>>>> tmp
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-<<<<<<< HEAD
+
         moveInput = moveInput.normalized;
 
         inputx = Mathf.Abs(moveInput.x);
@@ -143,13 +138,5 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector2.up * 180);
     }
 
-=======
-        moveAmount = moveInput.normalized * speed;
-    }
 
-    private void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + moveAmount * Time.fixedDeltaTime);
-    }
->>>>>>> tmp
 }

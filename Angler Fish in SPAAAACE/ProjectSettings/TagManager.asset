@@ -7,6 +7,7 @@ TagManager:
   - Organic
   - Metal
   - NonEdible
+  - DebrisController
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Astros
+  - Spaceship
+  - Player
   - 
   - 
   - 
