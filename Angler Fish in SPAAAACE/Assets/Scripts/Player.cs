@@ -22,7 +22,8 @@ public class Player : MonoBehaviour
     private Vector2 moveAmount;
     private bool ableToEat = true;
     public float energy = 70;
-
+    public PlayThatFunkyMusic whiteboy;
+    public float intensityToggle;
     public bool attractive = false;
 
     // Movement stuff with acceleration
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        whiteboy = GameObject.FindGameObjectWithTag("Musician");
         rb = GetComponent<Rigidbody2D>();
         accelRatePerSec = maxSpeed / timeZeroToMax;
         forwardVelocityX = 0f;
@@ -59,13 +61,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (energy < intensityToggle)
+        {
+            whiteboy.highIntensity = true;
+        }
+        else
+        {
+            whiteboy.highIntensity = false;
+        }
 
         if (recharged)
         {
             endBoost();
             recharged = false;
         }
-        if (Input.GetKeyDown("space") && boostReady)
+        if (Input.GetKeyDown("left shift") && boostReady)
         {
             startBoost();
             boostReady = false;
@@ -210,7 +220,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Digest());
         }
 
-        if ((other.gameObject.CompareTag("NonEdible")) && (ableToEat == true))
+        if ((other.gameObject.CompareTag("NonEdible")))
         {
             energy-= energyReduceByNonEdible;
             Debug.Log(energy);

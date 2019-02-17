@@ -58,6 +58,7 @@ public class Shipmovement : MonoBehaviour
             else
             {
                 scared = true;
+                yield return new WaitForSeconds(3);
             }
             yield return new WaitForSeconds(1);
         }

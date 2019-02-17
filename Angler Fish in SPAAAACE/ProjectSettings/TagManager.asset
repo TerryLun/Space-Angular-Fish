@@ -8,6 +8,7 @@ TagManager:
   - Metal
   - NonEdible
   - DebrisController
+  - Musician
   layers:
   - Default
   - TransparentFX
