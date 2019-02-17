@@ -59,6 +59,7 @@ public class DestroyByContact : MonoBehaviour
             {
                 // increment energy and score
                 gameController.IncreaseScore(1);
+                // gameController.IncreaseEnergy(100); // increase the energy
                 gameController.TakeDamage(spaceshipDamage);
                 // destroy the astronaut
                 Destroy(gameObject);

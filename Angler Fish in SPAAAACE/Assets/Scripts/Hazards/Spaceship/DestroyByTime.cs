@@ -7,6 +7,12 @@ public class DestroyByTime : MonoBehaviour
 
 	void Start ()
 	{
-		Destroy (gameObject, lifetime);
+		if (gameObject.tag == "Spaceship")
+        {
+            Destroy(gameObject, lifetime);
+            // after destruction, play warp drive animation
+            Instantiate(warpDriveAnim, transform.position, transform.rotation);
+        }
+        Destroy (gameObject, lifetime);
 	}
 }
