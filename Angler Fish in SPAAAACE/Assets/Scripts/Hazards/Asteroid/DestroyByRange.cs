@@ -35,6 +35,7 @@ public class DestroyByRange : MonoBehaviour
         {
             debrisController.DespawnHazard();
             Destroy(gameObject);
+            //Debug.Log("Despawned debris");
         }
     }
 }
