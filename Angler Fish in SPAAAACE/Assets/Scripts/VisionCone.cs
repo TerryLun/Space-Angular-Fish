@@ -22,7 +22,5 @@ public class VisionCone : MonoBehaviour
     void Update()
     {
         lt.spotAngle = player.energy;
-        Debug.Log(lt.spotAngle);
-        Debug.Log(player.energy);
     }
 }

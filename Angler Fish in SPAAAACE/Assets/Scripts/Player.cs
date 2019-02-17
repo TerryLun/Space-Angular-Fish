@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private bool ableToEat = true;
     public float energy = 70;
 
+    public bool attractive = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,7 +32,17 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+        attractive = false;
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (moveAmount == Vector2.zero)
+        {
+            if (Input.GetButton("Attract"))
+            {
+                attractive = true;
+                Debug.Log("Attractive: " + attractive);
+            }
+        }
         moveAmount = moveInput.normalized * speed;
 
         if (moveInput.normalized != Vector2.zero)
@@ -38,6 +50,7 @@ public class Player : MonoBehaviour
             transform.up = moveInput.normalized;
         }
         energy -= energydrain * Time.deltaTime;
+
 
     }
 
