@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public float spawnWait;
     public float startWait;
     public float waveWait;
+    public bool disableSpawning;
 
     private bool gameOver;
     private bool restart;
@@ -72,7 +73,7 @@ public class GameController : MonoBehaviour
         while (true)
         {
             Debug.Log("Here");
-            if (hazardCount < 3 && Random.value >= 0.5)
+            if (hazardCount < 3 && Random.value >= 0.5 && !disableSpawning)
             {
                 GameObject hazard = spaceship_hazards[Random.Range(0, spaceship_hazards.Length)];
 
@@ -139,6 +140,11 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
+    }
+
+    public bool IsGameOver()
+    {
+        return gameOver;
     }
 
     /// <summary>
