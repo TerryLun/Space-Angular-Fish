@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public float intensityToggle;
     public bool attractive = false;
     public SoundFX SFX;
+    public bool wasBoostActive = true;
 
     // Movement stuff with acceleration
    
@@ -218,26 +219,36 @@ public class Player : MonoBehaviour
 
     void startBoost()
     {
-        Debug.Log("Boosting");
-        energy -= energydrain;
-        accelRatePerSec = accelRatePerSec * 10;
-        deccelerateBuff = deccelerateBuff * 10;
-        maxSpeed = maxSpeed * 3;
-        maxNegSpeed = maxSpeed * -1;
-        StartCoroutine(boostTimer());
-        animator.SetBool("isBoosting", true);
-        boostTime = Time.time;
+        if(!wasBoostActive)
+        {
+            Debug.Log("Boosting");
+            energy -= energydrain;
+            accelRatePerSec = accelRatePerSec * 10;
+            deccelerateBuff = deccelerateBuff * 10;
+            maxSpeed = maxSpeed * 3;
+            maxNegSpeed = maxSpeed * -1;
+            StartCoroutine(boostTimer());
+            animator.SetBool("isBoosting", true);
+            boostTime = Time.time;
+            wasBoostActive = true;
+        }
+
     }
 
     void endBoost()
     {
-        Debug.Log("Boost Ended");
-        accelRatePerSec = accelRatePerSec / 10;
-        deccelerateBuff = deccelerateBuff / 10;
-        maxSpeed = maxSpeed / 3;
-        maxNegSpeed = maxSpeed * -1;
-        boostReady = true;
-        animator.SetBool("isBoosting", false);
+        if (wasBoostActive)
+        {
+            Debug.Log("Boost Ended");
+            accelRatePerSec = accelRatePerSec / 10;
+            deccelerateBuff = deccelerateBuff / 10;
+            maxSpeed = maxSpeed / 3;
+            maxNegSpeed = maxSpeed * -1;
+            boostReady = true;
+            animator.SetBool("isBoosting", false);
+            wasBoostActive = false;
+        }
+
     }
 
     public IEnumerator boostTimer()
