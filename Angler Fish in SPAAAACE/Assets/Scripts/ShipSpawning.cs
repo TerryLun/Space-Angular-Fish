@@ -5,46 +5,54 @@ using UnityEngine;
 public class ShipSpawning : MonoBehaviour
 {
     public GameObject[] Ships;
-    public Vector3 initialPosition;
-    public bool negative;
+    public Vector3 offSet;
+    public int maxShips;
+    public float shipGainRate;
+    public float shipSpawnRate;
+
+    private bool goodToSpawn;
+    private int currentShips;
 
     // Start is called before the first frame update
     void Start()
     {
-        initialPosition = transform.position;
-        if(initialPosition.x < 0)
-        {
-            negative = true;
-        }
-        else
-        {
-            negative = false;
-        }
+        StartCoroutine(PlanetProduction());
+        StartCoroutine(SpawningTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (negative)
+        if(currentShips < maxShips && goodToSpawn)
         {
-            if(transform.position.x > 0)
-            {
-                negative = false;
-                SpawnShip();
-            }
+            goodToSpawn = false;
+            SpawnShip();
         }
-        else
-        {
-            if(transform.position.x < 0)
-            {
-                negative = true;
-                SpawnShip();
-            }
-        }
+
     }
 
     void SpawnShip()
     {
-        Instantiate(Ships[Random.Range(0, Ships.Length)]);
+        GameObject spawn = Instantiate(Ships[Random.Range(0, Ships.Length)], transform.position + offSet, transform.rotation);
+        spawn.GetComponent<Shipmovement>().home = transform;
+    }
+
+    IEnumerator SpawningTimer()
+    {
+        while (true)
+        {
+            goodToSpawn = true;
+            yield return new WaitForSeconds(shipSpawnRate);
+        }
+    }
+
+    IEnumerator PlanetProduction()
+    {
+        yield return new WaitForSeconds(shipGainRate);
+        while (true)
+        {
+            maxShips++;
+            yield return new WaitForSeconds(shipGainRate);
+        }
     }
 }
