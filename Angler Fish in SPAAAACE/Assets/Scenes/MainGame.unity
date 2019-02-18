@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 147012075}
   - component: {fileID: 147012074}
   - component: {fileID: 147012073}
+  - component: {fileID: 147012078}
   m_Layer: 0
   m_Name: Planet 2
   m_TagString: NonEdible
@@ -246,6 +247,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147012078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147012072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049cb5ef23245e445ba74d2ff4c546b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ships:
+  - {fileID: 124534, guid: 7a70adb45063260458b0352db99d899c, type: 3}
+  - {fileID: 1040683600862617918, guid: 77e54b5a2df27864d9e0e03ac7b93ecd, type: 3}
+  offSet: {x: 10, y: 0, z: 0}
+  maxShips: 4
+  shipGainRate: 85
+  shipSpawnRate: 10
 --- !u!1 &157656185
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +753,7 @@ GameObject:
   - component: {fileID: 473313306}
   - component: {fileID: 473313305}
   - component: {fileID: 473313304}
+  - component: {fileID: 473313309}
   m_Layer: 0
   m_Name: Planet 4
   m_TagString: NonEdible
@@ -857,6 +878,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473313309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473313303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049cb5ef23245e445ba74d2ff4c546b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ships:
+  - {fileID: 124534, guid: 7a70adb45063260458b0352db99d899c, type: 3}
+  - {fileID: 1040683600862617918, guid: 77e54b5a2df27864d9e0e03ac7b93ecd, type: 3}
+  offSet: {x: 15, y: 15, z: 0}
+  maxShips: 6
+  shipGainRate: 120
+  shipSpawnRate: 20
 --- !u!1 &550751954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1666,7 @@ GameObject:
   - component: {fileID: 1214576294}
   - component: {fileID: 1214576293}
   - component: {fileID: 1214576292}
+  - component: {fileID: 1214576297}
   m_Layer: 0
   m_Name: Planet 3
   m_TagString: NonEdible
@@ -1747,6 +1788,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1214576297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214576291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049cb5ef23245e445ba74d2ff4c546b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ships:
+  - {fileID: 124534, guid: 7a70adb45063260458b0352db99d899c, type: 3}
+  - {fileID: 1040683600862617918, guid: 77e54b5a2df27864d9e0e03ac7b93ecd, type: 3}
+  offSet: {x: 0, y: 20, z: 0}
+  maxShips: 5
+  shipGainRate: 80
+  shipSpawnRate: 35
 --- !u!1 &1395327830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,7 +2900,7 @@ PrefabInstance:
     - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
       propertyPath: energydrain
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
@@ -2860,7 +2920,7 @@ PrefabInstance:
     - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
       propertyPath: energydrain
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
@@ -2897,6 +2957,11 @@ PrefabInstance:
       propertyPath: intensityToggle
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1976314131}
     - target: {fileID: 1265187242063162465, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2952,11 +3017,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 1265187242063162494, guid: 2f068c46e6e9c5343a663d389d1ece2a,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1976314131}
     - target: {fileID: 1265187242063162495, guid: 2f068c46e6e9c5343a663d389d1ece2a,
         type: 3}
       propertyPath: m_BodyType
