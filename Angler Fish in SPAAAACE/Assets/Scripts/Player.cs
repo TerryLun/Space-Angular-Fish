@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
         deccelerateBuff *= accelRatePerSec;
         boostReady = false;
         recharged = true;
+        time = 0f;
 }
 
     private void Update()
