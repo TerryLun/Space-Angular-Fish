@@ -1,1 +1,1 @@
-![GDD](Documents/One Page GDD.png "GDD")
+![GDD](Documents/One-Page-GDD.png "GDD")
