@@ -1,13 +1,13 @@
-### 🚀 How to play 🐟
+## 🚀 How to play 🐟
 
-go to >>> build
+Go to >>> `build` folder
 
-open >>> Angler Fish in SPAAAACE.exe
+Open >>> `Angler Fish in SPAAAACE.exe`
 
-### Screenshots
+## Screenshots
 
 ![screenshots](Documents/screenshot.png "screenshots")
 
-### Game design document
+## Game design document
 
 ![GDD](Documents/One-Page-GDD.png "GDD")
